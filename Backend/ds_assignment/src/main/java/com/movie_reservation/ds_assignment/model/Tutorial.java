@@ -1,9 +1,12 @@
 package com.movie_reservation.ds_assignment.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "tutorials")
+@Data
 public class Tutorial {
 
     @Id
@@ -14,12 +17,6 @@ public class Tutorial {
 
     public Tutorial(String id, String title, String description, boolean published) {
         this.id = id;
-        this.title = title;
-        this.description = description;
-        this.published = published;
-    }
-
-    public Tutorial(String title, String description, boolean published) {
         this.title = title;
         this.description = description;
         this.published = published;
