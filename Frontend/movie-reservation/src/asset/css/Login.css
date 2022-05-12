@@ -6,16 +6,18 @@
   padding-top: 100px;
   padding-left: 250px;
 }
-
 a {
   text-decoration: none;
-  padding-left: 200px;
+  padding-left: 5px;
 }
-.image {
+.pic {
   background-image: url("../image/login.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center right;
   height: auto;
   width: auto;
+}
+.p1 {
+  padding-left: 200px;
 }
