@@ -1,0 +1,37 @@
+.home__bg {
+  background-color: #010101;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+li.nav__items {
+  font-size: 18px;
+  padding-top: 20px;
+  padding-left: 10px;
+}
+
+.home__content {
+  padding: 209px 0px;
+}
+
+h1.home__text {
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: rgba(198, 201, 216, 0.75) !important;
+}
+
+h2.home__text {
+  font-size: 54px;
+  line-height: 54px;
+  font-weight: 800;
+  font-family: Montserrat, sans-serif;
+}
+
+h3.home__text {
+  font-size: 50px;
+  line-height: 40px;
+  font-weight: 800;
+  font-family: Montserrat, sans-serif;
+}
