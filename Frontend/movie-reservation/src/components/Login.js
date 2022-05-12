@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../asset/css/Navigation.css";
-import "../asset/css/Movie.css";
 import "../asset/css/Login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Headers from "./Header";

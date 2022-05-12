@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../asset/css/Navigation.css";
-import "../asset/css/Movie.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../asset/css/Registration.css";
 import Header from "./Header";
@@ -66,7 +65,7 @@ function Register() {
           </button>
         </div>
         <p>
-          Already registered<a href="./Login">Signin</a>?
+          Already registered<a href="./">Signin</a>?
         </p>
       </div>
       <Footer />
