@@ -36,7 +36,7 @@
 }
 
 .Footer {
-  padding: 100%, 100%;
+  padding: 100%,100%;
   color: #ddd;
 }
 
@@ -45,3 +45,6 @@
   position: absolute;
   bottom: 0;
 }
+ .color{
+   color: white;
+ }
