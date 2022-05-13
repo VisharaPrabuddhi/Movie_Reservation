@@ -1,0 +1,13 @@
+.itemside{
+    display: flex;
+    margin-left: 1rem;
+}
+
+.itemside .info{
+    margin-left: 1rem;
+    text-align: left;
+}
+
+.itemside .info a{
+    text-decoration: none;
+}

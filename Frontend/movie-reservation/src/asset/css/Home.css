@@ -1,0 +1,22 @@
+/* #44b3e4	
+#8fbff4	
+#0c141c	
+#78a3bf	
+#8eaccb	
+#2c444c */
+.topnavbar{
+    display: flex;
+    line-height: 10px;
+    width: auto;
+}
+
+.wrapper .carousel img{
+    height:40rem;
+    margin-bottom:5rem;
+}
+
+.wrapper .middle-view{
+    margin-left:6rem;
+    margin-bottom:5rem;    
+}
+
