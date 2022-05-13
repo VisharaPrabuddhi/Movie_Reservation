@@ -126,5 +126,5 @@ public class TutorialController {
     @DeleteMapping("/cart/delete")
     public void deleteMovie(@RequestBody ObjectId movieId){
         cartRepository.deleteById(movieId);
-    } 
+    }
 }
