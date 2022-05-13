@@ -1,7 +1,10 @@
 package com.movie_reservation.ds_assignment.controller;
 
+import com.movie_reservation.ds_assignment.model.Cart;
 import com.movie_reservation.ds_assignment.model.Tutorial;
+import com.movie_reservation.ds_assignment.repository.CartRepository;
 import com.movie_reservation.ds_assignment.repository.TutorialRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +20,9 @@ public class TutorialController {
 
     @Autowired
     TutorialRepository tutorialRepository;
+
+    @Autowired
+    CartRepository cartRepository;
 
     @GetMapping("/tutorials")
     public ResponseEntity<List<Tutorial>> getAllTutorials(@RequestParam(required = false) String title) {
@@ -102,4 +108,23 @@ public class TutorialController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+//    APIs for cart operations
+    @PostMapping("/cart/add")
+    public void addToCart(@RequestBody Cart cart){
+//        get user id
+//            String userID = userDetails.getID();
+        cartRepository.save(new Cart(cart.getId(),cart.getUserID(),cart.getUserName(),cart.getMovieName(),cart.getShowTime(),cart.getShowDate(),cart.getBookedDate(),cart.getTheaterName(),cart.getTicketAmount()));
+    }
+
+//    @GetMapping("cart/get")
+//    public ResponseEntity<List> getCartList(){
+//
+//        return cartRepository.findBy(userID)
+//    }
+
+    @DeleteMapping("/cart/delete")
+    public void deleteMovie(@RequestBody ObjectId movieId){
+        cartRepository.deleteById(movieId);
+    } 
 }
