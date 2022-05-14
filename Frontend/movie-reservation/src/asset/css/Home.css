@@ -1,37 +1,22 @@
-.home__bg {
-  background-color: #010101;
-  background-position: 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
+/* #44b3e4	
+#8fbff4	
+#0c141c	
+#78a3bf	
+#8eaccb	
+#2c444c */
+.topnavbar{
+    display: flex;
+    line-height: 10px;
+    width: auto;
 }
 
-li.nav__items {
-  font-size: 18px;
-  padding-top: 20px;
-  padding-left: 10px;
+.wrapper .carousel img{
+    height:40rem;
+    margin-bottom:5rem;
 }
 
-.home__content {
-  padding: 209px 0px;
+.wrapper .middle-view{
+    margin-left:6rem;
+    margin-bottom:5rem;    
 }
 
-h1.home__text {
-  font-size: 18px;
-  font-weight: 400;
-  letter-spacing: 3px;
-  color: rgba(198, 201, 216, 0.75) !important;
-}
-
-h2.home__text {
-  font-size: 54px;
-  line-height: 54px;
-  font-weight: 800;
-  font-family: Montserrat, sans-serif;
-}
-
-h3.home__text {
-  font-size: 50px;
-  line-height: 40px;
-  font-weight: 800;
-  font-family: Montserrat, sans-serif;
-}

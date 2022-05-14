@@ -1,23 +1,20 @@
-.box {
-  width: 680px;
-  height: 510px;
-  position: relative;
-  text-align: left;
-  padding-top: 100px;
-  padding-left: 250px;
-}
-a {
-  text-decoration: none;
-  padding-left: 5px;
-}
-.pic {
-  background-image: url("../image/login.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center right;
-  height: auto;
-  width: auto;
-}
-.p1 {
-  padding-left: 200px;
-}
+.login {
+    min-height: 100vh;
+  }
+  .bg-image {
+    background-image: url('https://source.unsplash.com/random/?movie');
+    background-size: cover;
+    background-position: center;
+  }
+  .login-heading {
+    font-weight: 300;
+  }
+  .btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+  }
+  .invalid
+  {
+    border-color: red!important;
+  }
