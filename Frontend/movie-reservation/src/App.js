@@ -4,6 +4,10 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Cart from './components/Cart';
 
+// Admin Side
+import Dashboard from './components/dashboard/DashboardLoder';
+import DisplayAllMovie from './pages/Movies/DisplayAll';
+
 function App() {
   return (
     <>
@@ -12,6 +16,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/movie" element={<DisplayAllMovie />} />
         </Routes>
       </Router>
     </>
