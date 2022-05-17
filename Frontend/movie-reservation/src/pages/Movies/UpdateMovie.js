@@ -7,10 +7,10 @@ import Select from 'react-select';
 import './Movie.css';
 import Navbar from '../../components/dashboard/Navbar';
 import Sidebar from '../../components/dashboard/Sidebar';
-// import firebase from './firebase';
-// import 'firebase/storage'
+import firebase from './firebase';
+import 'firebase/storage'
 
-// const storage = firebase.storage();
+const storage = firebase.storage();
 
 const UpdateStaffMember = props => {
 
@@ -18,7 +18,7 @@ const UpdateStaffMember = props => {
 
     // state
     const [file, setFile] = useState(null);
-    const [profileURL, setURL] = useState("");
+    const [movieURL, setURL] = useState("");
     const [cast, setSelectedCast] = useState("");
     const [tags, setSelectedTag] = useState("");
 
@@ -189,9 +189,9 @@ const UpdateStaffMember = props => {
         }
     ];
 
-    // function handleChangeImage(e) {
-    //     setFile(e.target.files[0]);
-    // }
+    function handleChangeImage(e) {
+        setFile(e.target.files[0]);
+    }
 
     useEffect(() => {
         axios
@@ -208,6 +208,7 @@ const UpdateStaffMember = props => {
                     director,
                     cast,
                     available,
+                    movieURL,
                 } = response.data
 
                 setState({
@@ -224,8 +225,8 @@ const UpdateStaffMember = props => {
                 setSelectedCast(cast);
                 setSelectedTag(tags);
 
-                // setURL(profileURL);
-                // console.log(profileURL)
+                setURL(movieURL);
+                console.log(movieURL)
             })
             .catch(error => alert('Error Loading Update Movie'));
     }, []);
@@ -280,7 +281,7 @@ const UpdateStaffMember = props => {
                         <select id="type" value={language} onChange={handleChange("language")} className="form-control">
                             <option value="" disabled selected>Select a Language</option>
                             <option value="Sinhala">Sinhala</option>
-                            <option value="English">Emglish</option>
+                            <option value="English">English</option>
                             <option value="Tamil">Tamil</option>
                             <option value="Spanish">Spanish</option>
                         </select>
@@ -361,7 +362,7 @@ const UpdateStaffMember = props => {
 
             <br />
             <div>
-                <button className="btn btn-primary btn-lg btn-block">Add Movie</button>
+                <button className="btn btn-primary btn-lg btn-block">Update Movie</button>
             </div>
             <br />
         </form>
@@ -373,20 +374,20 @@ const UpdateStaffMember = props => {
         }
     }
 
-    //Save Image
-    // function handleUpload(e) {
-    //     e.preventDefault();
-    //     const ref = storage.ref(`/images/${file.name}`);
-    //     const uploadTask = ref.put(file);
-    //     uploadTask.on("state_changed", console.log, console.error, () => {
-    //         ref
-    //             .getDownloadURL()
-    //             .then((url) => {
-    //                 setFile(null);
-    //                 setURL(url);
-    //             });
-    //     });
-    // }
+    // Save Image
+    function handleUpload(e) {
+        e.preventDefault();
+        const ref = storage.ref(`/images/${file.name}`);
+        const uploadTask = ref.put(file);
+        uploadTask.on("state_changed", console.log, console.error, () => {
+            ref
+                .getDownloadURL()
+                .then((url) => {
+                    setFile(null);
+                    setURL(url);
+                });
+        });
+    }
 
     const handleSubmit = event => {
         event.preventDefault()
@@ -414,6 +415,7 @@ const UpdateStaffMember = props => {
                 director,
                 cast,
                 available,
+                movieURL,
             })
             .then(response => {
 
@@ -444,6 +446,7 @@ const UpdateStaffMember = props => {
                     cast,
                     available,
                 });
+
                 //show success alert
                 // alert(`Staff Member ${firstName} is Updated`);
                 Swal.fire(
@@ -475,19 +478,19 @@ const UpdateStaffMember = props => {
                         <div className="card-body">
                             <h1 align="center">Update Movie</h1>
                             <center>
-                                {/* <div class="row container ">
-                                <div class="col">
-                                    <label className="text-muted"> <b>Upload Profile Picture (This is Optional)</b></label><br /><br />
-                                    <div >
-                                        <form onSubmit={handleUpload}>
-                                            <input type="file" onChange={handleChangeImage} />
-                                            <button disabled={!file}>upload to firebase</button>
-                                        </form>
-                                        <br />
-                                        <img src={profileURL} alt="" style={{ width: "250px", height: "300px" }} />
+                                <div class="row container ">
+                                    <div class="col">
+                                        <label className="text-muted"> <b>Upload Movie Image (This is Optional)</b></label><br /><br />
+                                        <div >
+                                            <form onSubmit={handleUpload}>
+                                                <input type="file" onChange={handleChangeImage} />
+                                                <button disabled={!file}>upload to firebase</button>
+                                            </form>
+                                            <br />
+                                            <img src={movieURL} alt="" style={{ width: "250px", height: "300px" }} />
+                                        </div>
                                     </div>
                                 </div>
-                            </div> */}
                             </center>
                             <br />
                             {showUpdateForm()}

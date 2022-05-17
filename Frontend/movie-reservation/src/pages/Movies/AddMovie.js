@@ -244,6 +244,7 @@ const AddMovie = () => {
                 director,
                 cast,
                 available,
+                movieURL,
             })
             .then((response) => {
                 console.log(response);
@@ -369,7 +370,7 @@ const AddMovie = () => {
                                             <select id="type" value={language} onChange={handleChange("language")} className="form-control">
                                                 <option value="" disabled selected>Select a Language</option>
                                                 <option value="Sinhala">Sinhala</option>
-                                                <option value="English">Emglish</option>
+                                                <option value="English">English</option>
                                                 <option value="Tamil">Tamil</option>
                                                 <option value="Spanish">Spanish</option>
                                             </select>
