@@ -8,7 +8,7 @@ const Navbar = () => {
     return (
         <div>
             <nav class="navbar navbar-expand-md navbar-dark bg-dark" style={{ position: 'static' }}>
-                <a class="navbar-brand" href="/dashboard" style={{ marginLeft: "46%" }}>Admin Dashboard</a>
+                <a class="navbar-brand" href="/movie" style={{ marginLeft: "46%" }}>Admin Dashboard</a>
                 <button
                     class="navbar-toggler"
                     type="button"
