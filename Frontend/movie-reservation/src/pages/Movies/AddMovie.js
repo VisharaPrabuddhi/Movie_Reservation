@@ -4,10 +4,10 @@ import Swal from 'sweetalert2';
 import Select from 'react-select';
 import Navbar from '../../components/dashboard/Navbar';
 import Sidebar from '../../components/dashboard/Sidebar';
-// import firebase from './firebase';
-// import 'firebase/storage'
+import firebase from './firebase';
+import 'firebase/storage'
 
-// const storage = firebase.storage();
+const storage = firebase.storage();
 
 const AddMovie = () => {
     // state
@@ -188,24 +188,25 @@ const AddMovie = () => {
         };
     }
 
-    // function handleChangeImage(e) {
-    //     setFile(e.target.files[0]);
-    // }
+    function handleChangeImage(e) {
+        setFile(e.target.files[0]);
+    }
 
-    //Save Image
-    // function handleUpload(e) {
-    //     e.preventDefault();
-    //     const ref = storage.ref(`/images/${file.name}`);
-    //     const uploadTask = ref.put(file);
-    //     uploadTask.on("state_changed", console.log, console.error, () => {
-    //         ref
-    //             .getDownloadURL()
-    //             .then((url) => {
-    //                 setFile(null);
-    //                 setURL(url);
-    //             });
-    //     });
-    // }
+    // Save Image
+    function handleUpload(e) {
+        e.preventDefault();
+        const ref = storage.ref(`/images/${file.name}`);
+        const uploadTask = ref.put(file);
+        uploadTask.on("state_changed", console.log, console.error, () => {
+            ref
+                .getDownloadURL()
+                .then((url) => {
+                    setFile(null);
+                    setURL(url);
+                    console.log(url);
+                });
+        });
+    }
 
     const dropHandleChangeCast = (e) => {
         setSelectedCast(Array.isArray(e) ? e.map(x => x.value) : []);
@@ -308,21 +309,21 @@ const AddMovie = () => {
 
                     <div className="card">
                         <div className="card-body">
-                            {/* <center>
+                            <center>
                                 <div class="row container ">
                                     <div class="col">
                                         <label className="text-muted"> <b>Upload Movie Picture (This is Optional)</b></label><br /><br />
                                         <div >
                                             <form onSubmit={handleUpload}>
-                                            <input type="file" onChange={handleChangeImage} />
-                                            <button disabled={!file}>upload to firebase</button>
-                                        </form>
+                                                <input type="file" onChange={handleChangeImage} />
+                                                <button disabled={!file}>upload to firebase</button>
+                                            </form>
                                             <br />
-                                            <img src={profileURL} alt="" style={{ width: "250px", height: "250px" }} />
+                                            <img src={movieURL} alt="" style={{ width: "250px", height: "250px" }} />
                                         </div>
                                     </div>
                                 </div>
-                            </center> */}
+                            </center>
 
                             <br />
                             <br />
