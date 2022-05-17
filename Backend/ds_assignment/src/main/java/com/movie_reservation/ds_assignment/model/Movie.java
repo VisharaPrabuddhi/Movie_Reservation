@@ -23,8 +23,9 @@ public class Movie {
     private String director;
     private List cast;
     private Boolean available;
+    private String movieURL;
 
-    public Movie(String id, String name, String description, String genre, int rating, Date releaseDate, String language, List tags, String director, List cast, Boolean available) {
+    public Movie(String id, String name, String description, String genre, int rating, Date releaseDate, String language, List tags, String director, List cast, Boolean available, String movieURL) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -36,6 +37,7 @@ public class Movie {
         this.director = director;
         this.cast = cast;
         this.available = available;
+        this.movieURL = movieURL;
     }
 
     public String getId() {
@@ -126,5 +128,11 @@ public class Movie {
         this.cast = cast;
     }
 
+    public String getMovieURL() {
+        return movieURL;
+    }
 
+    public void setMovieURL(String movieURL) {
+        this.movieURL = movieURL;
+    }
 }

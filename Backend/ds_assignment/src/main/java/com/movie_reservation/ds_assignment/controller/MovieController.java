@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins="*")
 @RequestMapping("/movie")
 public class MovieController {
 
@@ -26,7 +27,7 @@ public class MovieController {
     @PostMapping("/")
     public ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
         try {
-            Movie movieList = movieRepository.save(new Movie(movie.getId(), movie.getName(), movie.getDescription(), movie.getGenre(), movie.getRating(), movie.getReleaseDate(), movie.getLanguage(), movie.getTags(), movie.getDirector(), movie.getCast(), false));
+            Movie movieList = movieRepository.save(new Movie(movie.getId(), movie.getName(), movie.getDescription(), movie.getGenre(), movie.getRating(), movie.getReleaseDate(), movie.getLanguage(), movie.getTags(), movie.getDirector(), movie.getCast(), movie.getAvailable(), movie.getMovieURL()));
             return new ResponseEntity<>(movieList, HttpStatus.CREATED);
         } catch (Exception e) {
             System.out.println("Error :- " + e.getMessage());
@@ -91,6 +92,7 @@ public class MovieController {
             movieList.setDirector(movie.getDirector());
             movieList.setCast(movie.getCast());
             movieList.setAvailable(movie.getAvailable());
+            movieList.setMovieURL(movie.getMovieURL());
             return new ResponseEntity<>(movieRepository.save(movieList), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
