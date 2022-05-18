@@ -1,3 +1,8 @@
+/*
+    Created by - Isuru Pathum Herath
+    Name - DashboardLoder
+ */
+
 import React from 'react';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';

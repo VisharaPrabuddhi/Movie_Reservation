@@ -1,3 +1,8 @@
+/*
+    Created by - Isuru Pathum Herath
+    Name - Display All Movies
+ */
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert';
@@ -25,7 +30,7 @@ const DisplayAll = () => {
             });
     }
 
-    //Delete staff Member by ID
+    //Delete Theater
     const deleteMovie = (id) => {
         Swal({
             title: "Are you sure?",
@@ -45,7 +50,7 @@ const DisplayAll = () => {
                             });
                             fetchMovies();
                         })
-                        .catch(error => alert('Error deleting Staff Member'));
+                        .catch(error => Swal('Error deleting Movie'));
 
                 } else {
                     Swal("Movie didn't deleted!");
@@ -178,7 +183,7 @@ const DisplayAll = () => {
                                                 <td>{movies.name}</td>
                                             </a>
 
-                                            <td>{movies.director}</td>
+                                            <td>{movies.available.toString()}</td>
                                             <td>{movies.genre}</td>
                                             <td>{movies.rating}</td>
                                             <td>{movies.releaseDate}</td>

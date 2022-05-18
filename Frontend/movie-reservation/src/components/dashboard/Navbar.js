@@ -1,3 +1,8 @@
+/*
+    Created by - Isuru Pathum Herath
+    Name - Navbar
+ */
+
 import React, { useState } from 'react';
 
 const Navbar = () => {
