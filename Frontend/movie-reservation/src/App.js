@@ -10,6 +10,7 @@ import DisplayAllMovie from './pages/Movies/DisplayAll';
 import AddMovie from './pages/Movies/AddMovie';
 import UpdateMovie from './pages/Movies/UpdateMovie';
 import ImageUpload from './pages/Movies/imageUpload';
+import DisplayAllTheater from './pages/Theater/DisplayAll';
 
 function App() {
   return (
