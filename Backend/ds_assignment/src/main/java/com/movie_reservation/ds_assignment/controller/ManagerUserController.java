@@ -1,7 +1,7 @@
 package com.movie_reservation.ds_assignment.controller;
 
-import com.movie_reservation.ds_assignment.model.Movie;
-import com.movie_reservation.ds_assignment.repository.MovieRepository;
+import com.movie_reservation.ds_assignment.model.ManagerUser;
+import com.movie_reservation.ds_assignment.repository.ManagerUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,22 +13,22 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins="*")
-@RequestMapping("/movie")
-public class MovieController {
+@RequestMapping("/manager")
+public class ManagerUserController {
 
     @Autowired
-    MovieRepository movieRepository;
+    ManagerUserRepository managerUserRepository;
 
     /*
-        Method - Create Movie
+        Method - Create Manager
         By - Isuru Pathum Herath
     */
 
     @PostMapping("/")
-    public ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
+    public ResponseEntity<ManagerUser> createManager(@RequestBody ManagerUser managerUser) {
         try {
-            Movie movieList = movieRepository.save(new Movie(movie.getId(), movie.getName(), movie.getDescription(), movie.getGenre(), movie.getRating(), movie.getReleaseDate(), movie.getLanguage(), movie.getTags(), movie.getDirector(), movie.getCast(), movie.getAvailable(), movie.getMovieURL()));
-            return new ResponseEntity<>(movieList, HttpStatus.CREATED);
+            ManagerUser managerList = managerUserRepository.save(new ManagerUser(managerUser.getId(), managerUser.getFirstName(), managerUser.getMiddleName(), managerUser.getLastName(), managerUser.getMobileNumber(), managerUser.getEmail(), managerUser.getDOB(), managerUser.getNIC(), managerUser.getAddress(), "manager", managerUser.getAccountStatus(), managerUser.getProfileURL()));
+            return new ResponseEntity<>(managerList, HttpStatus.CREATED);
         } catch (Exception e) {
             System.out.println("Error :- " + e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -36,78 +36,78 @@ public class MovieController {
     }
 
     /*
-        Method - Get All Movies
+        Method - Get All Manager
         By - Isuru Pathum Herath
     */
 
     @GetMapping("/")
-    public ResponseEntity<List<Movie>> getAllMovies(@RequestParam(required = false) String title) {
+    public ResponseEntity<List<ManagerUser>> getAllManager(@RequestParam(required = false) String title) {
         try {
-            List<Movie> movies = new ArrayList<Movie>();
+            List<ManagerUser> manager = new ArrayList<ManagerUser>();
             if (title == null)
-                movieRepository.findAll().forEach(movies::add);
+                managerUserRepository.findAll().forEach(manager::add);
             else
-                movieRepository.findByNameContaining(title).forEach(movies::add);
-            if (movies.isEmpty()) {
+                managerUserRepository.findByFirstNameContaining(title).forEach(manager::add);
+            if (manager.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-            return new ResponseEntity<>(movies, HttpStatus.OK);
+            return new ResponseEntity<>(manager, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     /*
-        Method - Get Movie by Id
+        Method - Get Manager by Id
         By - Isuru Pathum Herath
     */
 
     @GetMapping("/{id}")
-    public ResponseEntity<Movie> getMovieById(@PathVariable("id") String id) {
-        Optional<Movie> movies = movieRepository.findById(id);
-        if (movies.isPresent()) {
-            return new ResponseEntity<>(movies.get(), HttpStatus.OK);
+    public ResponseEntity<ManagerUser> getManagerById(@PathVariable("id") String id) {
+        Optional<ManagerUser> managerUser = managerUserRepository.findById(id);
+        if (managerUser.isPresent()) {
+            return new ResponseEntity<>(managerUser.get(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
 
     /*
-        Method - Update Movies
+        Method - Update Manager
         By - Isuru Pathum Herath
     */
 
     @PutMapping("/{id}")
-    public ResponseEntity<Movie> updateMovie(@PathVariable("id") String id, @RequestBody Movie movie) {
-        Optional<Movie> movieData = movieRepository.findById(id);
-        if (movieData.isPresent()) {
-            Movie movieList = movieData.get();
-            movieList.setName(movie.getName());
-            movieList.setDescription(movie.getDescription());
-            movieList.setGenre(movie.getGenre());
-            movieList.setRating(movie.getRating());
-            movieList.setReleaseDate(movie.getReleaseDate());
-            movieList.setLanguage(movie.getLanguage());
-            movieList.setTags(movie.getTags());
-            movieList.setDirector(movie.getDirector());
-            movieList.setCast(movie.getCast());
-            movieList.setAvailable(movie.getAvailable());
-            movieList.setMovieURL(movie.getMovieURL());
-            return new ResponseEntity<>(movieRepository.save(movieList), HttpStatus.OK);
+    public ResponseEntity<ManagerUser> updateMovie(@PathVariable("id") String id, @RequestBody ManagerUser managerUser) {
+        Optional<ManagerUser> managerData = managerUserRepository.findById(id);
+        if (managerData.isPresent()) {
+            ManagerUser managerList = managerData.get();
+            managerList.setFirstName(managerUser.getFirstName());
+            managerList.setMiddleName(managerUser.getMiddleName());
+            managerList.setLastName(managerUser.getLastName());
+            managerList.setMobileNumber(managerUser.getMobileNumber());
+            managerList.setEmail(managerUser.getEmail());
+            managerList.setDOB(managerUser.getDOB());
+            managerList.setNIC(managerUser.getNIC());
+            managerList.setAddress(managerUser.getAddress());
+            managerList.setType(managerUser.getType());
+            managerList.setAccountStatus(managerUser.getAccountStatus());
+            managerList.setProfileURL(managerUser.getProfileURL());
+            return new ResponseEntity<>(managerUserRepository.save(managerList), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     /*
-      Method - Delete Movies by Id
+      Method - Delete Manager by Id
       By - Isuru Pathum Herath
     */
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> deleteMovie(@PathVariable("id") String id) {
+    public ResponseEntity<HttpStatus> deleteManager(@PathVariable("id") String id) {
         try {
-            movieRepository.deleteById(id);
+            managerUserRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -115,14 +115,14 @@ public class MovieController {
     }
 
     /*
-      Method - Delete All Movies
+      Method - Delete All Managers
       By - Isuru Pathum Herath
     */
 
     @DeleteMapping("/")
-    public ResponseEntity<HttpStatus> deleteAllMovies() {
+    public ResponseEntity<HttpStatus> deleteAllManagers() {
         try {
-            movieRepository.deleteAll();
+            managerUserRepository.deleteAll();
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -130,18 +130,18 @@ public class MovieController {
     }
 
     /*
-      Method - Get by Availability
+      Method - Get by Type
       By - Isuru Pathum Herath
     */
 
-    @GetMapping("/available")
-    public ResponseEntity<List<Movie>> findByAvailability() {
+    @GetMapping("/type")
+    public ResponseEntity<List<ManagerUser>> findByAvailability() {
         try {
-            List<Movie> movies = movieRepository.findByAvailable(true);
-            if (movies.isEmpty()) {
+            List<ManagerUser> managerUsers = managerUserRepository.findByType("active");
+            if (managerUsers.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-            return new ResponseEntity<>(movies, HttpStatus.OK);
+            return new ResponseEntity<>(managerUsers, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

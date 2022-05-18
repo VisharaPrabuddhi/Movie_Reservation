@@ -1,41 +1,33 @@
-/*
-    Created by - Isuru Pathum Herath
-    Name - Display All Movies
- */
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Swal from 'sweetalert';
-import './Movie.css';
+import Swal from "sweetalert";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import './Manager.css';
 import Navbar from '../../components/dashboard/Navbar';
 import Sidebar from '../../components/dashboard/Sidebar';
-import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 const DisplayAll = () => {
 
-    const [movies, setMovies] = useState([]);
-    const [count, setCount] = useState([]);
+    const [manager, setManager] = useState([])
     const [wordEntered, setWordEntered] = useState("");
+    const [count, setCount] = useState([]);
 
-    // Fetch All Movies
-    const fetchMovies = () => {
-        axios.get("http://localhost:8081/movie/")
+    //Fetch All Managers
+    const fetchManager = () => {
+        axios.get("http://localhost:8081/manager/")
             .then(response => {
                 console.log(response)
-                setMovies(response.data)
+                setManager(response.data)
                 setCount(response.data.length);
             })
-            .catch(error => {
-                console.log(error);
-                // alert("Error Fetching Staff Members")
-            });
+            .catch(error => alert("Error Fetching Managers"));
     }
 
-    //Delete Theater
-    const deleteMovie = (id) => {
+    //Delete Manager by ID
+    const deleteManager = (id) => {
         Swal({
             title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this Movie!",
+            text: "Once deleted, you will not be able to recover this Manager!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -43,70 +35,68 @@ const DisplayAll = () => {
             .then((willDelete) => {
                 if (willDelete) {
                     axios
-                        .delete(`http://localhost:8081/movie/${id}`)
+                        .delete(`http://localhost:8081/manager/${id}`)
                         .then(response => {
                             // alert(response.data.message);
-                            Swal("The Movie is Deleted!", {
+                            Swal("The Manager is Deleted!", {
                                 icon: "success",
                             });
-                            fetchMovies();
+                            fetchManager();
                         })
-                        .catch(error => Swal('Error deleting Movie'));
+                        .catch(error => Swal('Error deleting Manager'));
 
                 } else {
-                    Swal("Movie didn't deleted!");
+                    Swal("Manager didn't deleted!");
                 }
             });
     }
 
-    //Filter Movies
+    //Filter Staff Member
     const handleFilter = (event) => {
         const searchWord = event.target.value;
         console.log(searchWord);
         setWordEntered(searchWord);
-        axios.get("http://localhost:8081/movie/")
+        axios.get("http://localhost:8081/manager/")
             .then(response => {
                 console.log(response)
-                const newFilter = movies.filter((response) => {
-                    return response.name.toLowerCase().includes(searchWord.toLowerCase());
+                const newFilter = manager.filter((response) => {
+                    return response.nic.toLowerCase().includes(searchWord.toLowerCase()) ||
+                        response.firstName.toLowerCase().includes(searchWord.toLowerCase()) ||
+                        response.middleName.toLowerCase().includes(searchWord.toLowerCase()) ||
+                        response.lastName.toLowerCase().includes(searchWord.toLowerCase()) ||
+                        response.type.toLowerCase().includes(searchWord.toLowerCase()) ||
+                        response.email.toLowerCase().includes(searchWord.toLowerCase()) ||
+                        response.mobileNumber.toString().toLowerCase().includes(searchWord.toLowerCase());
                 });
 
                 if (searchWord === "") {
                     console.log("EMPLTY");
-                    fetchMovies();
+                    fetchManager();
                 } else {
-                    setMovies(newFilter);
+                    setManager(newFilter);
                 }
             })
             .catch(error => console.log(error));
     };
 
     useEffect(() => {
-        fetchMovies();
+        fetchManager();
     }, [])
 
     return (
         <div>
-
-
             <Navbar />
             <Sidebar />
 
             <div style={{ marginLeft: "90px", position: "absolute" }}>
-                {/* <div class="container-fluid" id="main">
-                <div class="row row-offcanvas row-offcanvas-left">
-                    
-                </div>
-            </div> */}
                 <div className="card scrollable-div" style={{ width: "1240px", height: "590px" }}>
-                    <div className="card-body ">
-                        <h1 align="center">Movies</h1>
+                    <div className="card-body">
+                        <h1 align="center">Managers</h1>
                         <br />
                         <div>
                             <center>
-
                                 <div
-                                    className="border border-info "
+                                    className="border border-info"
                                     style={{
                                         width: "100%",
                                         backgroundColor: "white",
@@ -117,12 +107,10 @@ const DisplayAll = () => {
                                         align: "center"
                                     }}
                                 >
-
                                     <div className="row">
-
                                         <div className="col">
                                             <span style={{ color: "blue" }}><h3>{count}</h3></span>
-                                            <span><h3>Number of Available Movies</h3></span>
+                                            <span><h3>Number of Managers</h3></span>
                                         </div>
                                         {/* <div className="col">
                                         <i
@@ -148,15 +136,13 @@ const DisplayAll = () => {
                                         />
                                     </div>
                                 </form>
-
                             </center>
                         </div>
 
-
-                        <div className="scrollable-div">
+                        <div className=" scrollable-div">
                             <center>
-                                <a className="btn btn-success btn-lg btn-block" href={`/new-movie`}>
-                                    <i class="fas fa-solid fa-plus">&nbsp; New Movie</i>
+                                <a className="btn btn-success btn-lg btn-block" href={`/new-manager`}>
+                                    <i class="fas fa-solid fa-plus">&nbsp; New Manager</i>
                                 </a>
                                 <a>
                                     <ReactHTMLTableToExcel
@@ -169,50 +155,49 @@ const DisplayAll = () => {
                                 </a>
                             </center>
 
-                            <table id="table" class="table scrollable-div " responsive className="table table-hover" style={{ marginTop: '40px', marginLeft: '20px', width: '95%' }}>
+                            <table id="table" class="table" responsive className="table table-hover" style={{ marginTop: '40px', marginLeft: '20px', width: '95%' }}>
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Movie Name</th>
-                                        <th>Availability</th>
-                                        <th>Genre</th>
-                                        <th>Rating</th>
-                                        <th>Released Date</th>
-                                        <th>Language</th>
-                                        <th>Type</th>
-                                        {/* <th>Created At</th> */}
+                                        <th>Employee ID</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Employee Type</th>
+                                        <th>NIC Number</th>
+                                        <th>Email Address</th>
+                                        <th>Mobile Number</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {movies.map((movies, i) => (
+                                    {manager.map((manager, i) => (
                                         <tr key={i}>
                                             <th scope="row">{i + 1}</th>
 
-                                            <a href={`/update-movie/${movies.id}`} style={{ textDecoration: 'none' }}>
-                                                <td>{movies.name}</td>
+                                            <a href={`/singleProfile/${manager.id}`} style={{ textDecoration: 'none' }}>
+                                                <td>{manager.id}</td>
                                             </a>
 
-                                            <td>{movies.available.toString()}</td>
-                                            <td>{movies.genre}</td>
-                                            <td>{movies.rating}</td>
-                                            <td>{movies.releaseDate}</td>
-                                            <td>{movies.language}</td>
-                                            <td>{movies.tags.join("/")}</td>
-                                            {/* <td>{movies.createdAt}</td> */}
+                                            <td>{manager.firstName}</td>
+                                            <td>{manager.lastName}</td>
+                                            <td>{manager.type}</td>
+                                            <td>{manager.nic}</td>
+                                            <td>{manager.email}</td>
+                                            <td>{manager.mobileNumber}</td>
+                                            {/* <td>{staffMembers.createdAt}</td> */}
 
                                             <td>
-                                                <a className="" href={`/update-movie/${movies.id}`}>
+                                                <a className="" href={`/update-manager/${manager.id}`}>
                                                     <i className="fas fa-edit"></i>&nbsp;
                                                 </a>
                                                 &nbsp;
-                                                <a className="" href="#" onClick={() => deleteMovie(movies.id)}>
+                                                <a className="" href="#" onClick={() => deleteManager(manager.id)}>
                                                     <i className="far fa-trash-alt"></i>&nbsp;
                                                 </a>
                                                 &nbsp;
-                                                {/* <a href={`/attendance/${movies.employeeId}`} style={{ textDecoration: 'none' }}>
-                                                    <i class="fas fa-calendar-week"></i>&nbsp;
-                                                </a> */}
+                                                {/* <a href={`/attendance/${manager.id}`} style={{ textDecoration: 'none' }}>
+                                            <i class="fas fa-calendar-week"></i>&nbsp;
+                                        </a> */}
                                             </td>
                                         </tr>
                                     ))}
@@ -220,13 +205,21 @@ const DisplayAll = () => {
                             </table>
                         </div>
                         <br />
-
+                        {/* <div style={{ marginTop: '', marginLeft: "1030px" }}>
+                            <ReactHTMLTableToExcel
+                                className='btn btn-outline-success'
+                                table='table'
+                                filename='Manager Excel'
+                                sheet='Sheet'
+                                buttonText='Download Excel Sheet'
+                            />
+                        </div> */}
                     </div>
                 </div>
             </div>
-
-        </div>
+        </div >
     )
+
 }
 
 export default DisplayAll;

@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert';
 import './Theater.css';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import Navbar from '../../components/dashboard/Navbar';
 import Sidebar from '../../components/dashboard/Sidebar';
 
@@ -157,6 +158,15 @@ const DisplayAll = () => {
                                 <a className="btn btn-success btn-lg btn-block" href={`/new-theater`}>
                                     <i class="fas fa-solid fa-plus">&nbsp; New Theater</i>
                                 </a>
+                                <a>
+                                    <ReactHTMLTableToExcel
+                                        className='btn btn-outline-success'
+                                        table='table'
+                                        filename='Movie Excel'
+                                        sheet='Sheet'
+                                        buttonText='Download Excel Sheet'
+                                    />
+                                </a>
                             </center>
 
                             <table id="table" class="table scrollable-div " responsive className="table table-hover" style={{ marginTop: '40px', marginLeft: '20px', width: '95%' }}>
@@ -211,14 +221,14 @@ const DisplayAll = () => {
                         </div>
                         <br />
                         {/* <div style={{ marginTop: '', marginLeft: "1030px" }}>
-                        <ReactHTMLTableToExcel
-                            className='btn btn-outline-success'
-                            table='table'
-                            filename='Staff Member Excel'
-                            sheet='Sheet'
-                            buttonText='Download Excel Sheet'
-                        />
-                    </div> */}
+                            <ReactHTMLTableToExcel
+                                className='btn btn-outline-success'
+                                table='table'
+                                filename='Theater Excel'
+                                sheet='Sheet'
+                                buttonText='Download Excel Sheet'
+                            />
+                        </div> */}
                     </div>
                 </div>
             </div>

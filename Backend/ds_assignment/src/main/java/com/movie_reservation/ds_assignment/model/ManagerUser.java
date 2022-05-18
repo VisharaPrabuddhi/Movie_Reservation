@@ -5,11 +5,10 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
-import java.util.List;
 
-@Document(collection = "movie")
+@Document(collection = "manager")
 @Data
-public class User {
+public class ManagerUser {
 
     @Id
     private String id;
@@ -25,7 +24,7 @@ public class User {
     private String accountStatus;
     private String profileURL;
 
-    public User(String id, String firstName, String middleName, String lastName, String mobileNumber, String email, Date DOB, String NIC, String address, String type, String accountStatus, String profileURL) {
+    public ManagerUser(String id, String firstName, String middleName, String lastName, String mobileNumber, String email, Date DOB, String NIC, String address, String type, String accountStatus, String profileURL) {
         this.id = id;
         this.firstName = firstName;
         this.middleName = middleName;
