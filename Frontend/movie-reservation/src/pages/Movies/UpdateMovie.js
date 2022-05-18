@@ -1,3 +1,8 @@
+/*
+  Created by - Isuru Pathum Herath
+  Name - Update movie
+*/
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
@@ -12,7 +17,7 @@ import 'firebase/storage'
 
 const storage = firebase.storage();
 
-const UpdateStaffMember = props => {
+const UpdateMovie = props => {
 
     const { id } = useParams();
 
@@ -472,8 +477,8 @@ const UpdateStaffMember = props => {
         <div>
             <Navbar />
             <Sidebar />
-            <div className="container card">
-                <div className="card-body">
+            <div className="container" style={{ marginLeft: "90px", position: "absolute" }}>
+                <div className="card scrollable-div" style={{ width: "1240px", height: "590px" }}>
                     <div className="card bg-light mb-3">
                         <div className="card-body">
                             <h1 align="center">Update Movie</h1>
@@ -503,4 +508,4 @@ const UpdateStaffMember = props => {
     )
 }
 
-export default UpdateStaffMember;
+export default UpdateMovie;

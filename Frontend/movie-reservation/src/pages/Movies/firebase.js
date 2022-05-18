@@ -1,10 +1,12 @@
-// Import the functions you need from the SDKs you need
+/*
+    Created by - Isuru Pathum Herath
+    Name - Firebase Storage
+ */
+
 import firebase from 'firebase/app';
 import 'firebase/storage';
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyBFJQoM1Hm9ALeBD2YopOU_spAWRdxA5zo",
     authDomain: "qcenter-image.firebaseapp.com",

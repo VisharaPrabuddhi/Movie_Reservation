@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/theater")
 public class TheaterController {
@@ -26,7 +27,7 @@ public class TheaterController {
     @PostMapping("/")
     public ResponseEntity<Theater> createTheater(@RequestBody Theater theater) {
         try {
-            Theater theaterList = theaterRepository.save(new Theater(theater.getId(), theater.getName(), theater.getAddress(), theater.getCity(), false, theater.getNoOfSeat()));
+            Theater theaterList = theaterRepository.save(new Theater(theater.getId(), theater.getName(), theater.getAddress(), theater.getCity(), theater.getClose(), theater.getNoOfSeat()));
             return new ResponseEntity<>(theaterList, HttpStatus.CREATED);
         } catch (Exception e) {
             System.out.println("Error :- " + e.getMessage());

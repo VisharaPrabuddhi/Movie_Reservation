@@ -1,3 +1,8 @@
+/*
+    Created by - Isuru Pathum Herath
+    Name - Sidebar
+ */
+
 import React from 'react';
 import {
     CDBSidebar,
@@ -24,11 +29,11 @@ const Sidebar = () => {
                         <NavLink exact to="/movie" activeClassName="activeClicked">
                             <CDBSidebarMenuItem icon="columns">Movie</CDBSidebarMenuItem>
                         </NavLink>
-                        <NavLink exact to="/tables" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="table">Tables</CDBSidebarMenuItem>
+                        <NavLink exact to="/theater" activeClassName="activeClicked">
+                            <CDBSidebarMenuItem icon="table">Theater</CDBSidebarMenuItem>
                         </NavLink>
-                        <NavLink exact to="/profile" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="user">Profile page</CDBSidebarMenuItem>
+                        <NavLink exact to="/manager" activeClassName="activeClicked">
+                            <CDBSidebarMenuItem icon="user">Manager</CDBSidebarMenuItem>
                         </NavLink>
                         <NavLink exact to="/analytics" activeClassName="activeClicked">
                             <CDBSidebarMenuItem icon="chart-line">Analytics</CDBSidebarMenuItem>
